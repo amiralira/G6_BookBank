@@ -91,7 +91,6 @@ CREATE TABLE BookPublisher (
 CREATE TABLE Persons (
     ID INT,
     Name VARCHAR(127),
-    Description TEXT(16383),
     CONSTRAINT PK_Persons PRIMARY KEY (ID)
 );
 
