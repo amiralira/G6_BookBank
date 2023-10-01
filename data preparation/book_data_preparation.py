@@ -263,6 +263,7 @@ df_table_price.columns = [
     "Exists",
     "EarliestDeliveryDate",
 ]
+df_table_price["Exists"] = df_table_price["Exists"].astype(bool)
 
 # BooksInfo Database
 df_table_books_info = df_book[
