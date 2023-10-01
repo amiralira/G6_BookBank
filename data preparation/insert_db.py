@@ -13,6 +13,22 @@ from book_data_preparation import df_table_books, df_table_price, df_table_books
 db_file = 'my_books.db'
 
 engine = create_engine(f'sqlite:///{db_file}', echo=True)
+print(df_table_books.to_sql(name='Books', con=engine))
+print(df_table_price.to_sql(name='Price', con=engine))
+print(df_table_books_info.to_sql(name='BooksInfo', con=engine))
+print(df_table_book_publishers.to_sql(name='BookPublishers', con=engine))
+print(df_table_publishers.to_sql(name='Publishers', con=engine))
+print(df_table_book_authors.to_sql(name='BookAuthors', con=engine))
+print(df_table_book_translators.to_sql(name='BookTranslators', con=engine))
+print(df_table_book_illustrators.to_sql(name='BookIllustrators', con=engine))
+print(df_table_book_editors.to_sql(name='BookEditors', con=engine))
+print(df_table_book_speakers.to_sql(name='BookSpeakers', con=engine))
+print(df_table_book_tags.to_sql(name='BookTags', con=engine))
+print(df_table_tags.to_sql(name='Tags', con=engine))
+print(df_table_persons.to_sql(name='Persons', con=engine))
+exit()
+
+
 Base = declarative_base()
 
 class Book(Base):
@@ -163,11 +179,11 @@ dataframes_and_models = [
     (df_table_persons, Persons),
 ]
 
-# Insert data from each DataFrame into its corresponding table
+
 for df, model_class in dataframes_and_models:
     insert_dataframe_data(session, df, model_class)
 
-
+                   
 session.commit()
 session.close()
 
