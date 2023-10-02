@@ -66,6 +66,8 @@ st.plotly_chart(fig)
 
 
 # Group books by publisher and count the number of books
+st.subheader('Number of Books by Publisher')
+
 books_by_publisher = book_publishers.groupby('PublisherID').size().reset_index(name='BookCount')
 books_by_publisher = pd.merge(books_by_publisher, publishers, left_on='PublisherID', right_on='ID')
 
@@ -85,6 +87,8 @@ fig.update_layout(xaxis_title='Publisher', yaxis_title='Number of Books/Publicat
 st.plotly_chart(fig)
 
 # Number of books/publications chart
+st.subheader('Number of Publications by Type')
+
 st.subheader('Number of Books/Publications by Type')
 fig_books = px.bar(
     books['CoverType'].value_counts(),
@@ -109,6 +113,12 @@ if not books_by_year.empty:
     st.plotly_chart(fig_years)
 else:
     st.info("No data available for the 'Number of Books by Year of Publication' chart.")
+
+
+
+
+
+
 
 
 # Close the database connection
