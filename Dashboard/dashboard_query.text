@@ -1,0 +1,70 @@
+-- section 1
+SELECT T.Name AS TagName, COUNT(BT.BookID) AS BookCount
+FROM Tags AS T
+LEFT JOIN BookTags AS BT ON T.ID = BT.TagID
+GROUP BY T.Name
+order by BookCount desc;
+
+
+--section2
+SELECT P.Name AS PublisherName, COUNT(*) AS TotalBooks
+FROM Publishers AS P
+INNER JOIN BookPublishers AS BP ON P.ID = BP.PublisherID
+GROUP BY P.Name
+ORDER BY TotalBooks DESC
+LIMIT 10;
+
+--section3
+SELECT PersianPublishYear AS Persian_Publish_Year, GregorianPublishYear AS Eng_publish_year, COUNT(*) AS TotalBooks
+FROM Books
+WHERE PersianPublishYear != -1 OR GregorianPublishYear != -1
+GROUP BY Persian_Publish_Year, Eng_publish_year
+ORDER BY TotalBooks DESC;
+
+--section4
+SELECT P.Name AS AuthorName, COUNT(BA.BookID) AS Total_Books
+FROM persons AS P
+JOIN bookauthors AS BA ON P.ID = BA.PersonID
+GROUP BY AuthorName
+ORDER BY Total_Books DESC
+LIMIT 10;
+
+--section5
+SELECT P.Name AS TranslatorName, COUNT(BT.BookID) AS TotalTranslatedBooks
+FROM Persons AS P
+Inner JOIN BookTranslators AS BT ON P.ID = BT.PersonID
+GROUP BY P.Name
+ORDER BY TotalTranslatedBooks DESC
+LIMIT 10;
+
+--section6
+SELECT B.PageCount as Pages, B.PersianPublishYear As PersianPublishYear, B.GregorianPublishYear AS EngPublishYear
+FROM books AS B
+WHERE B.PageCount <> -1
+ORDER BY Pages DESC ;
+
+--section7
+SELECT B.PersianPublishYear AS PersianPublishYear, B.GregorianPublishYear AS EngPublishYear,
+       P.Price AS Pric_without_Discount
+FROM books AS B
+JOIN price AS P ON B.ID = P.BookID
+ORDER BY Pric_without_Discount DESC ;
+
+
+--section8 (not sure about it)
+SELECT B.DataRating AS Rating, P.Price AS BookPrice
+FROM books AS B
+JOIN price AS P ON B.id = P.BookID
+order by BookPrice DESC ;
+
+--section9
+SELECT GhatE AS Format, COUNT(*) AS TotalBooks
+FROM Books
+GROUP BY Format
+order by TotalBooks DESC;
+
+-- ask which one ghatE or cover type?
+SELECT CoverType AS type, COUNT(*) AS TotalBooks
+FROM Books
+GROUP BY type
+order by TotalBooks DESC;
