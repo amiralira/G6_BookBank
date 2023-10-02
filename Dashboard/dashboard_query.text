@@ -23,8 +23,8 @@ ORDER BY TotalBooks DESC;
 
 --section4
 SELECT P.Name AS AuthorName, COUNT(BA.BookID) AS Total_Books
-FROM persons AS P
-JOIN bookauthors AS BA ON P.ID = BA.PersonID
+FROM Persons AS P
+JOIN BookAuthors AS BA ON P.ID = BA.PersonID
 GROUP BY AuthorName
 ORDER BY Total_Books DESC
 LIMIT 10;
@@ -39,22 +39,21 @@ LIMIT 10;
 
 --section6
 SELECT B.PageCount as Pages, B.PersianPublishYear As PersianPublishYear, B.GregorianPublishYear AS EngPublishYear
-FROM books AS B
+FROM Books AS B
 WHERE B.PageCount <> -1
 ORDER BY Pages DESC ;
 
 --section7
-SELECT B.PersianPublishYear AS PersianPublishYear, B.GregorianPublishYear AS EngPublishYear,
-       P.Price AS Pric_without_Discount
-FROM books AS B
-JOIN price AS P ON B.ID = P.BookID
+SELECT B.PersianPublishYear AS PersianPublishYear, B.GregorianPublishYear AS EngPublishYear, P.Price AS Pric_without_Discount
+FROM Books AS B
+JOIN Price AS P ON B.ID = P.BookID
 ORDER BY Pric_without_Discount DESC ;
 
 
 --section8 (not sure about it)
 SELECT B.DataRating AS Rating, P.Price AS BookPrice
-FROM books AS B
-JOIN price AS P ON B.id = P.BookID
+FROM Books AS B
+JOIN Price AS P ON B.id = P.BookID
 order by BookPrice DESC ;
 
 --section9
