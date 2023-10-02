@@ -95,13 +95,13 @@ CREATE TABLE BooksInfo (
 """
 
 create_book_publisher_table_query = """
-CREATE TABLE BookPublisher (
+CREATE TABLE BookPublishers (
     ID INT AUTO_INCREMENT,
     BookID INT,
     PublisherID VARCHAR(100),
-    CONSTRAINT PK_BookPublisher PRIMARY KEY (ID),
-    CONSTRAINT FK_BookPublisher_Books FOREIGN KEY (BookID) REFERENCES Books (ID),
-    CONSTRAINT FK_BookPublisher_Publishers FOREIGN KEY (PublisherID) REFERENCES Publishers (ID)
+    CONSTRAINT PK_BookPublishers PRIMARY KEY (ID),
+    CONSTRAINT FK_BookPublishers_Books FOREIGN KEY (BookID) REFERENCES Books (ID),
+    CONSTRAINT FK_BookPublishers_Publishers FOREIGN KEY (PublisherID) REFERENCES Publishers (ID)
 )
 """
 
