@@ -1,1 +1,4 @@
-https://drive.google.com/drive/folders/1xtECmg156iNWSTrQR6yJeWjvu25y074H?usp=drive_link
+Drive: https://drive.google.com/drive/folders/1xtECmg156iNWSTrQR6yJeWjvu25y074H?usp=drive_link
+
+
+git: https://github.com/amiralira/G6_BookBank.git
