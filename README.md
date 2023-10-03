@@ -2,6 +2,7 @@
 
 Welcome to the Quora Data Analysis Bootcamp Project repository! This project aims to extract, analyze, and visualize data related to books from the  [iranketab](https://www.iranketab.ir/) website. It involves a comprehensive approach, including data extraction, database design, dashboard creation, and statistical analysis.
 
+![coding](files/giphy.gif)
 ## Project Overview
 
 The primary goal of this project is to build a book bank by extracting and analyzing information about books available on the iranketab website. The project is structured into several phases, including:
@@ -42,6 +43,8 @@ python main.py
 
 
 4. Access the dashboard in your web browser at `http://localhost:8501`.
+
+![coding](files/3AyY.gif)
 
 ## Contributing
 
