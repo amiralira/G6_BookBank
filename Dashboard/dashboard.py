@@ -3,8 +3,10 @@ import sqlite3
 import pandas as pd
 import matplotlib.pyplot as plt
 import plotly.express as px
+
 # Connect to the my_books.db database
 conn = sqlite3.connect('my_books.db')
+
 
 # Get the tables
 books = pd.read_sql('SELECT * FROM Books', conn) #column names: index	ID	Title	EnglishTitle	AnotherName	TitleRating	DataRating	ISBN	GhatE	PageCount	PersianPublishYear	GregorianPublishYear	CoverType	Series	NumberBookCovers
@@ -233,13 +235,13 @@ else:
     st.info("No data available for the scatter chart.")
 
 
-# # Merge the books and price tables
-# books_price = pd.merge(books, price, left_on='ID', right_on='BookID')[['ID', 'BookID', 'EnglishTitle', 'Price', 'TitleRating','Title','PageCount']]
-# # Create a scatter chart of book score vs. price
-# fig = px.scatter(books_price, x='TitleRating', y='Price', color='Title', size='PageCount', hover_name='Title')
+# Merge the books and price tables
+books_price = pd.merge(books, price, left_on='ID', right_on='BookID')[['ID', 'BookID', 'EnglishTitle', 'Price', 'TitleRating','Title','PageCount']]
+# Create a scatter chart of book score vs. price
+fig = px.scatter(books_price, x='TitleRating', y='Price', color='Title', size='PageCount', hover_name='Title')
 
-# # Display the scatter chart
-# st.plotly_chart(fig)
+# Display the scatter chart
+st.plotly_chart(fig)
 
 
 
