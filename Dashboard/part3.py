@@ -82,7 +82,7 @@ if not popular_tags.empty:
     )
     st.plotly_chart(fig_tags)
 else:
-    print ("no data")
+    st.info("No data available for the 'Top Authors by Number of Books Authored' chart.")
 
 conn.close()
 
