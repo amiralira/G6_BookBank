@@ -97,10 +97,9 @@ def get_top_translator():
 # section 6
 def get_books_pagecount():
     query = '''
-    SELECT B.PageCount as Pages, B.PersianPublishYear As PersianPublishYear, B.GregorianPublishYear AS EngPublishYear
+    SELECT B.PageCount as Pages, B.PersianPublishYear As PersianPublishYear
     FROM Books AS B
-    WHERE B.PageCount <> -1
-    ORDER BY Pages DESC ;
+    WHERE B.PageCount <> -1;
     '''
     return pd.read_sql_query(query, conn)
 
@@ -108,10 +107,9 @@ def get_books_pagecount():
 # section 7
 def get_price_per_year():
     query = '''
-    SELECT B.PersianPublishYear AS PersianPublishYear, B.GregorianPublishYear AS EngPublishYear, P.Price AS Price_without_Discount
+    SELECT B.PersianPublishYear AS PersianPublishYear, P.Price AS Price_without_Discount
     FROM Books AS B
-    JOIN Price AS P ON B.ID = P.BookID
-    ORDER BY Price_without_Discount DESC ;
+    JOIN Price AS P ON B.ID = P.BookID;
     '''
     return pd.read_sql_query(query, conn)
 
@@ -191,6 +189,8 @@ fig = px.bar(
 fig.update_layout(xaxis_title='Year', yaxis_title='Number of Books')
 st.plotly_chart(fig)
 
+
+
 # section 4 display
 writers = get_top_writers()
 
@@ -237,8 +237,8 @@ if not page_count.empty:
     st.subheader('6. Scatter Chart: Number of Pages vs. Persian Publish Year')
     fig_scatter = px.scatter(
         page_count, 
-        x='Pages',
-        y='PersianPublishYear',
+        x='PersianPublishYear',
+        y='Pages',
         title='Scatter Chart: Number of Pages vs. Persian Publish Year'
     )
 
@@ -274,13 +274,13 @@ if not price_rate.empty:
         price_rate, 
         x='BookPrice',
         y='Rating',
-        title='Scatter Chart: Number of Pages vs. Persian Publish Year'
+        title='Scatter Chart: Price vs. Books Rating'
     )
     st.plotly_chart(fig_scatter)
     
 else:
     st.info("No data available for the scatter chart.")
-
+    
 
 
 # section 9 display
