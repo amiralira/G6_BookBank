@@ -7,7 +7,7 @@ from urllib.parse import quote_plus
 def my_create_engine():
     # Enter the following values to connect to the database
     user = "root"
-    password = ""
+    password = "khb!1mes2@K-pAsS3#zorie$"
     host = "localhost"
     port = 3306
     database = "my_books"

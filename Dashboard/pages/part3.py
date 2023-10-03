@@ -8,7 +8,7 @@ import matplotlib.pyplot as plt
 db_config = {
     'host': 'localhost',
     'user': 'root',
-    'password': '12345roshanak',
+    'password': 'khb!1mes2@K-pAsS3#zorie$',
     'database': 'my_books'
 }
 

@@ -9,7 +9,7 @@ import plotly.express as px
 db_config = {
     'host': 'localhost',
     'user': 'root',
-    'password': '',
+    'password': 'khb!1mes2@K-pAsS3#zorie$',
     'database': 'my_books'
 }
 
