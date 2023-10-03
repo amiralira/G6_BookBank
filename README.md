@@ -10,6 +10,7 @@ The primary goal of this project is to build a book bank by extracting and analy
 
 2. **Database Design:** Designing a well-structured database to store the extracted information, ensuring optimal normalization and relationships between tables.
 
+![Database Design](files/sql.jpg)
 3. **Dashboard Development:** Creating an interactive dashboard using Python's Streamlit library to visualize and analyze the data. The dashboard includes analytical charts and advanced search features for users.
 
 4. **Statistical Analysis:** Testing and validating hypotheses related to book attributes, such as the impact of translation on book prices and the price difference between hardcover and paperback editions.
