@@ -43,11 +43,22 @@ st.plotly_chart(price_distribution)
 
 # Analysis 2: Publication Year Trends
 st.subheader('Publication Year Trends')
-# Group by GregorianPublishYear and count the number of books in each year
-# year_counts = books['GregorianPublishYear'].value_counts().reset_index()
-# year_counts.columns = ['GregorianPublishYear', 'NumberOfBooks']
 
-year_trends = px.line(year_counts, x='GregorianPublishYear', y='NumberOfBooks', title='Publication Year Trends')
+def get_year_count():
+    query = '''
+    SELECT PersianPublishYear AS PublishYear, COUNT(*) AS NumberOfBooks
+    FROM Books
+    WHERE PersianPublishYear BETWEEN 1041 AND 1402
+    GROUP BY PersianPublishYear
+    ORDER BY PersianPublishYear;
+    '''
+    return pd.read_sql_query(query, conn)
+
+year_counts = get_year_count()
+year_trends = px.line(year_counts, 
+                      x='GregorianPublishYear', 
+                      y='NumberOfBooks', 
+                      title='Publication Year Trends')
 year_trends.update_xaxes(title='Gregorian Publish Year')
 year_trends.update_yaxes(title='Number of Books')
 st.plotly_chart(year_trends)
