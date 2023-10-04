@@ -8,7 +8,7 @@ import matplotlib.pyplot as plt
 db_config = {
     'host': 'localhost',
     'user': 'root',
-    'password': 'khb!1mes2@K-pAsS3#zorie$',
+    'password': '',
     'database': 'my_books'
 }
 
@@ -44,8 +44,9 @@ st.plotly_chart(price_distribution)
 # Analysis 2: Publication Year Trends
 st.subheader('Publication Year Trends')
 # Group by GregorianPublishYear and count the number of books in each year
-year_counts = books['GregorianPublishYear'].value_counts().reset_index()
-year_counts.columns = ['GregorianPublishYear', 'NumberOfBooks']
+# year_counts = books['GregorianPublishYear'].value_counts().reset_index()
+# year_counts.columns = ['GregorianPublishYear', 'NumberOfBooks']
+
 year_trends = px.line(year_counts, x='GregorianPublishYear', y='NumberOfBooks', title='Publication Year Trends')
 year_trends.update_xaxes(title='Gregorian Publish Year')
 year_trends.update_yaxes(title='Number of Books')
