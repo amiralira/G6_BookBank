@@ -23,11 +23,6 @@ except sqlite3.Error as error:
 # except:
 # print("Error in connect_database function")
 
-try:
-    conn = mysql.connect('my_books.db')
-except sqlite3.Error as error:
-    print("Error while connecting to sqlite", error)
-
 cursor = conn.cursor()
 
 #1st client's request
