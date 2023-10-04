@@ -21,7 +21,7 @@ except sqlite3.Error as error:
 #             database=database_name,
 #     )
 # except:
-    print("Error in connect_database function")
+# print("Error in connect_database function")
 
 try:
     conn = mysql.connect('my_books.db')
