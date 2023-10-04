@@ -115,26 +115,26 @@ FROM tmp_table
 WHERE rate_quartile = 1 AND price_ntile = 1 ;'''
 
 # for MySQL
-# query = '''WITH tmp_table 
-#     AS ( 
-#     SELECT 
-#         ID, 
-#         Title title, 
-#         NTILE(4) OVER (ORDER BY DataRating DESC) rate_quartile, 
-#         DataRating rating, 
-#         Price price, 
-#         NTILE(5) OVER (ORDER BY Price) price_ntile 
-#     FROM Books 
-#     INNER JOIN Price ON 
-#         Books.ID = Price.BookID 
-#     WHERE Price.HasExists" = 1
-#     ) 
-# SELECT 
-#     title, 
-#     rating, 
-#     price 
-# FROM tmp_table 
-# WHERE rate_quartile = 1 AND price_ntile = 1 ;'''
+# query = '''WITH tmp_table
+#     AS (
+#     SELECT
+#         b.ID,
+#         Title title,
+#         NTILE(4) OVER (ORDER BY DataRating DESC) rate_quartile,
+#         DataRating rating,
+#         Price price,
+#         NTILE(5) OVER (ORDER BY Price) price_ntile
+#     FROM Books b
+#     INNER JOIN Price p ON
+#         b.ID = p.BookID
+#     WHERE p.HasExists = 1
+#     )
+# SELECT
+#     title,
+#     rating,
+#     price
+# FROM tmp_table
+# WHERE rate_quartile = 1 AND price_ntile = 1 ;''
 
 df2 = pd.read_sql(query, conn)
 
