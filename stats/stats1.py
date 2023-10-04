@@ -37,7 +37,7 @@ query = 'SELECT DISTINCT\
 #     INNER JOIN Persons AS p ON 
 #         ba.PersonID = p.ID 
 #     WHERE t.Name LIKE "%عاشقانه%"  AND b.DataRating >= 0 AND b.DataRating <= 5
-#     ORDER BY SUM((b.DataRating-3)*SQRT(b.Series)) OVER(PARTITION BY P.Name) DESC 
+#     ORDER BY SUM((b.DataRating/2.5-1)*(0.5 + 0.5*B.Series) + 0.04) OVER(PARTITION BY P.Name) DESC 
 #     LIMIT 5;'''
 
 df1 = pd.read_sql(query, conn)
@@ -49,7 +49,7 @@ df1 = pd.read_sql(query, conn)
 # 5. پیر پژو
 
 
-# sum of data rating is not a very good criterion, sum of (data rating - 3) * sqrt(series) could be a better criterion which leads to a different result
+# sum of data rating is not a very good criterion, sum of (data rating/2.5 - 1) * (0.5 + Series) plus number of books multiplied by 0.04 could be a better criterion which leads to a different result
 # 1. سومونک کید
 # 2. لسلی کانر
 # 3. جوزف بویدن
@@ -119,7 +119,7 @@ LIMIT 5;'''
 #     bp.PublisherID = P.ID 
 # WHERE t.Name LIKE "%تاریخ%" 
 # GROUP BY p.ID 
-# ORDER BY SUM((b.DataRating-3)*SQRT(b.Series)) DESC 
+# ORDER BY SUM((b.DataRating/2.5-1)*(0.5 + 0.5*B.Series) + 0.04) DESC 
 # LIMIT 5;'''
 
 df3 = pd.read_sql(query, conn)
@@ -130,12 +130,12 @@ df3 = pd.read_sql(query, conn)
 # 4. علمی و فرهنگی
 # 5. سوره مهر
 
-# sum of data rating is not a very good criterion, sum of (data rating - 3) * sqrt(series) could be a better criterion which leads to a different result
-# 1. ققنوس
-# 2. نگاه
-# 3. نشر نی
-# 4. نشر چشمه
-# 5. علمی و فرهنگی
+# sum of data rating is not a very good criterion, sum of (data rating/2.5 - 1) * (0.5 + Series) plus number of books multiplied by 0.04 could be a better criterion which leads to a different result
+# 1. امید فردا
+# 2. فرهنگستان هنر
+# 3. بازتاب نگار
+# 4. ققنوس
+# 5. نشر نی
 
 
 df3.to_csv('writer_request.csv')
