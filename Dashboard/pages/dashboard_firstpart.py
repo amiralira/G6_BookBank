@@ -61,7 +61,7 @@ def get_books_publish_year():
     query = '''
     SELECT PersianPublishYear AS Persian_Publish_Year, GregorianPublishYear AS Eng_publish_year, COUNT(*) AS TotalBooks
     FROM Books
-    WHERE PersianPublishYear != -1 OR GregorianPublishYear != -1
+    WHERE PersianPublishYear BETWEEN 1041 AND 1402
     GROUP BY Persian_Publish_Year, Eng_publish_year
     ORDER BY TotalBooks DESC;
     '''
@@ -99,7 +99,7 @@ def get_books_pagecount():
     query = '''
     SELECT B.PageCount as Pages, B.PersianPublishYear As PersianPublishYear
     FROM Books AS B
-    WHERE B.PageCount <> -1;
+    WHERE B.PageCount <> -1  AND PersianPublishYear BETWEEN 1041 AND 1402;
     '''
     return pd.read_sql_query(query, conn)
 
@@ -109,7 +109,8 @@ def get_price_per_year():
     query = '''
     SELECT B.PersianPublishYear AS PersianPublishYear, P.Price AS Price_without_Discount
     FROM Books AS B
-    JOIN Price AS P ON B.ID = P.BookID;
+    JOIN Price AS P ON B.ID = P.BookID
+    WHERE PersianPublishYear BETWEEN 1041 AND 1402;
     '''
     return pd.read_sql_query(query, conn)
 
@@ -255,8 +256,8 @@ if not price_year.empty:
     st.subheader('7. Scatter Chart: Price without Discount vs. Persian Publish Year')
     fig_scatter = px.scatter(
         price_year, 
-        x='Price_without_Discount',
-        y='PersianPublishYear',
+        x='PersianPublishYear',
+        y='Price_without_Discount',
         title='Scatter Chart: Number of Pages vs. Persian Publish Year'
     )
     st.plotly_chart(fig_scatter)
