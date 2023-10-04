@@ -54,7 +54,7 @@ query = '''SELECT DISTINCT
 #     INNER JOIN Persons AS p ON 
 #         ba.PersonID = p.ID 
 #     WHERE t.Name LIKE "%عاشقانه%"  AND b.DataRating >= 0 AND b.DataRating <= 5
-#     ORDER BY SUM((b.DataRating/2.5-1)*(0.5 + 0.5*B.Series) + 0.5) OVER(PARTITION BY P.Name) DESC 
+#     ORDER BY SUM((b.DataRating/2.5-1)*(0.5 + 0.5*b.Series) + 0.5) OVER(PARTITION BY p.Name) DESC 
 #     LIMIT 5;'''
 
 df1 = pd.read_sql(query, conn)
@@ -113,6 +113,28 @@ SELECT
     price 
 FROM tmp_table 
 WHERE rate_quartile = 1 AND price_ntile = 1 ;'''
+
+# for MySQL
+# query = '''WITH tmp_table 
+#     AS ( 
+#     SELECT 
+#         ID, 
+#         Title title, 
+#         NTILE(4) OVER (ORDER BY DataRating DESC) rate_quartile, 
+#         DataRating rating, 
+#         Price price, 
+#         NTILE(5) OVER (ORDER BY Price) price_ntile 
+#     FROM Books 
+#     INNER JOIN Price ON 
+#         Books.ID = Price.BookID 
+#     WHERE Price.HasExists" = 1
+#     ) 
+# SELECT 
+#     title, 
+#     rating, 
+#     price 
+# FROM tmp_table 
+# WHERE rate_quartile = 1 AND price_ntile = 1 ;'''
 
 df2 = pd.read_sql(query, conn)
 
