@@ -1,28 +1,50 @@
 import pandas as pd
 import sqlite3
+# import mysql.connector
 
 try:
     conn = sqlite3.connect('my_books.db')
 except sqlite3.Error as error:
     print("Error while connecting to sqlite", error)
 
+# user = ""
+# password = ""
+# host = ""
+# port = 
+# database = ""
+
+# try:
+#     conn = mysql.connector.connect(
+#             host=host,
+#             user=user,
+#             password=password,
+#             database=database_name,
+#     )
+# except:
+    print("Error in connect_database function")
+
+try:
+    conn = mysql.connect('my_books.db')
+except sqlite3.Error as error:
+    print("Error while connecting to sqlite", error)
+
 cursor = conn.cursor()
 
 #1st client's request
-query = 'SELECT DISTINCT\
-        p.Name AS name \
-    FROM BookTags AS bt \
-    INNER JOIN Tags AS t ON \
-        bt.BookID = t.ID \
-    INNER JOIN Books AS B ON \
-        bt.BookID = b.ID \
-    INNER JOIN BookAuthors AS ba ON \
-        b.ID = ba.BookID \
-    INNER JOIN Persons AS p ON \
-        ba.PersonID = p.ID \
-    WHERE t.Name LIKE "%عاشقانه%"  AND b.DataRating >= 0 AND b.DataRating <= 5\
-    ORDER BY SUM(b.DataRating) OVER(PARTITION BY P.Name) DESC \
-    LIMIT 5;'
+query = '''SELECT DISTINCT
+        p.Name AS name 
+    FROM BookTags AS bt 
+    INNER JOIN Tags AS t ON
+        bt.BookID = t.ID
+    INNER JOIN Books AS B ON
+        bt.BookID = b.ID
+    INNER JOIN BookAuthors AS ba ON
+        b.ID = ba.BookID
+    INNER JOIN Persons AS p ON
+        ba.PersonID = p.ID
+    WHERE t.Name LIKE "%عاشقانه%"  AND b.DataRating >= 0 AND b.DataRating <= 5
+    ORDER BY SUM(b.DataRating) OVER(PARTITION BY P.Name) DESC
+    LIMIT 5;'''
 
 
 # query = '''SELECT DISTINCT
@@ -37,24 +59,40 @@ query = 'SELECT DISTINCT\
 #     INNER JOIN Persons AS p ON 
 #         ba.PersonID = p.ID 
 #     WHERE t.Name LIKE "%عاشقانه%"  AND b.DataRating >= 0 AND b.DataRating <= 5
-#     ORDER BY SUM((b.DataRating/2.5-1)*(0.5 + 0.5*B.Series) + 0.04) OVER(PARTITION BY P.Name) DESC 
+#     ORDER BY SUM((b.DataRating/2.5-1)*(0.5 + 0.5*B.Series) + 0.5) OVER(PARTITION BY P.Name) DESC 
 #     LIMIT 5;'''
 
 df1 = pd.read_sql(query, conn)
 
-# 1. سومونک کید
+# sqlite
+# 1. سومونک کید 
 # 2. جوزف بویدن
 # 3. لسلی کانر
 # 4. ژوزه ساراماگو
 # 5. پیر پژو
 
+# mysql
+# 1. سومونک کید 
+# 2. پیر پژو
+# 3. جوزف بویدن
+# 4. ژوزه ساراماگو
+# 5. لسلی کانر
 
-# sum of data rating is not a very good criterion, sum of (data rating/2.5 - 1) * (0.5 + Series) plus number of books multiplied by 0.04 could be a better criterion which leads to a different result
+
+# sum of data rating is not a very good criterion, sum of (data rating/2.5 - 1) * (0.5 + Series) plus number of books multiplied by 0.5 could be a better criterion which leads to a different result
+# sqlite
 # 1. سومونک کید
 # 2. لسلی کانر
 # 3. جوزف بویدن
 # 4. ژوزه ساراماگو
 # 5. هرتا مولر
+
+# mysql
+# 1. سومونک کید
+# 2. لسلی کانر
+# 3. جوزف بویدن
+# 4. ژوزه ساراماگو
+# 5. لسلی کانر
 
 
 df1.to_csv('first_client_request.csv')
@@ -119,18 +157,35 @@ LIMIT 5;'''
 #     bp.PublisherID = P.ID 
 # WHERE t.Name LIKE "%تاریخ%" 
 # GROUP BY p.ID 
-# ORDER BY SUM((b.DataRating/2.5-1)*(0.5 + 0.5*b.Series) + 0.04) DESC 
+# ORDER BY SUM((b.DataRating/2.5-1)*b.Series + 1) DESC 
 # LIMIT 5;'''
 
 df3 = pd.read_sql(query, conn)
 
-# 1. ققنوس
+# sqlite
+# 1. ققنوس   
 # 2. علم
 # 3. نگاه
 # 4. علمی و فرهنگی
 # 5. سوره مهر
 
-# sum of data rating is not a very good criterion, sum of (data rating/2.5 - 1) * (0.5 + Series) plus number of books multiplied by 0.04 could be a better criterion which leads to a different result
+# mysql
+# 1. ققنوس   
+# 2. علم
+# 3. نگاه
+# 4. علمی و فرهنگی
+# 5. سوره مهر
+
+# sum of data rating is not a very good criterion, sum of (data rating/2.5 - 1) * series plus number of books could be a better criterion which leads to a different result
+
+# sqlite
+# 1. امید فردا
+# 2. فرهنگستان هنر
+# 3. بازتاب نگار
+# 4. ققنوس
+# 5. نشر نی
+
+# mysql
 # 1. امید فردا
 # 2. فرهنگستان هنر
 # 3. بازتاب نگار
