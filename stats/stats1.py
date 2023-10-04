@@ -119,7 +119,7 @@ LIMIT 5;'''
 #     bp.PublisherID = P.ID 
 # WHERE t.Name LIKE "%تاریخ%" 
 # GROUP BY p.ID 
-# ORDER BY SUM((b.DataRating/2.5-1)*(0.5 + 0.5*B.Series) + 0.04) DESC 
+# ORDER BY SUM((b.DataRating/2.5-1)*(0.5 + 0.5*b.Series) + 0.04) DESC 
 # LIMIT 5;'''
 
 df3 = pd.read_sql(query, conn)
