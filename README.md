@@ -1,6 +1,6 @@
 # Quera Data Analysis Bootcamp Project
 
-Welcome to the Quora Data Analysis Bootcamp Project repository! This project aims to extract, analyze, and visualize data related to books from the  [iranketab](https://www.iranketab.ir/) website. It involves a comprehensive approach, including data extraction, database design, dashboard creation, and statistical analysis.
+Welcome to the Quera Data Analysis Bootcamp Project repository! This project aims to extract, analyze, and visualize data related to books from the  [iranketab](https://www.iranketab.ir/) website. It involves a comprehensive approach, including data extraction, database design, dashboard creation, and statistical analysis.
 
 ![coding](files/giphy.gif)
 ## Project Overview
@@ -56,11 +56,11 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 
 ## Acknowledgments
 
-We would like to express our gratitude to the mentors and instructors at Quora Data Analysis Bootcamp for their guidance and support throughout this project.
+We would like to express our gratitude to the mentors and instructors at Quera Data Analysis Bootcamp for their guidance and support throughout this project.
 
 ---
 
-Thank you for your interest in our Quora Data Analysis Bootcamp Project! 
+Thank you for your interest in our Quera Data Analysis Bootcamp Project! 
 
 Happy Data Analyzing!
 
